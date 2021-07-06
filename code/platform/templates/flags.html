@@ -1,0 +1,78 @@
+<html>
+<head>
+	{%include 'head.html'%}
+</head>
+<body onload="load()">
+	{%include 'navbar.html'%}
+	<div style="margin-top: 70px; margin-bottom: 70px">
+		<div class="container">
+			<div class="well text-center">
+				<h1><em>Put whatever text you want here</em></h1>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col md-12">
+					<h2>Flag List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#add_flag">Click here to add flag</button></h2>
+					{%with messages = get_flashed_messages()%}
+					{%if messages%}
+					{%for message in messages%}
+					<div class="alert alert-success alert-dismissable" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						{{message}}
+					</div>
+					{%endfor%}
+					{%endif%}
+					{%endwith%}
+					<table class="table table-striped">
+						<tr>
+							<th>ID</th>
+							<th>Flag</th>
+							<th>Solved</th>
+							<th>Action</th>
+						</tr>
+						{% for row in flags %}
+						<tr>
+							<td>{{row.0}}</td>
+							<td>{{row.1}}</td>
+							<td>{{row.2}}</td>
+							<td>
+								<a href="/delete/{{row.0}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')">Delete</a>
+							</td>
+						</tr>
+						{%endfor%}
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="add_flag" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Insert Flag</h4>
+					</div>
+					<div class="modal-body">
+						<form action="{{url_for('insert')}}" method="POST">
+							<div class="form-group">
+								<label>Flag</label>
+								<input type="text" class="form-control" name="flag" placeholder="MzRhMGI0MzgtNzEzMy00OTQxLTgyYzEtZWQxYjQ1MTg2YjVl" required="1">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-primary" type="submit">Add Flag</button>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{%include 'footer.html'%}
+</body>
+{%include 'scripts.html'%}
+</html>
