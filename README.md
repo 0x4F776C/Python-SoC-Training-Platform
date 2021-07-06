@@ -1,5 +1,5 @@
 # Python SoC Training Platform
-This project was created to meet the requirements of my major project.
+This project was created to meet the requirements of my major project
 
 ## Installation/Setup
 ```console
