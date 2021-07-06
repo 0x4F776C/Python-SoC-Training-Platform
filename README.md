@@ -1,4 +1,4 @@
-# Python SoC Training Platform
+# Python-SoC-Training-Platform
 This project was created to meet the requirements of my major project
 
 ## Installation/Setup
